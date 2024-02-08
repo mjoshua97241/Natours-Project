@@ -187,3 +187,28 @@ body {
   /* Disappear button first */
   animation-fill-mode: backwards;
 }
+
+/* LEARNING SPECIFICITY 
+.button {
+  font-size: 20px;
+  color: white;
+  background-color: blue;
+}
+
+a {
+  background-color:purple;
+}
+
+#nav div.pull-right a.button {
+  backgroung-color: orangered;
+}
+
+#nav div.pull-right a.button {
+  background-color: green;
+}
+
+#nav a.button:hover {
+  background-color: yellow;
+}
+
+*/
