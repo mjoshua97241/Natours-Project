@@ -253,4 +253,17 @@ a {
 - The inherit keyword forces inheritance on a certain property;
 - The initial keyword resets a property to its initial value.
 
+
+WHAT IS SASS?
+It is a CSS preprocessor, an extension of CSS that adds power and elegance to the basic language.
+
+Features:
+- Variables: for reusable values (colors, font sizes, spacing, etc)
+- Nesting
+- Operators
+- Partials and imports
+- Mixins
+- Functions
+- Extends
+- Control Directives
 */
