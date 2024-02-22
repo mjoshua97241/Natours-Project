@@ -268,7 +268,7 @@ Features:
 - Control Directives
 
 ////SCSS
-*{
+//*{
   margin:0;
   padding:0;
 }
