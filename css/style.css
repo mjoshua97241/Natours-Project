@@ -282,15 +282,31 @@ $color-text-light: #eee;
 
 $width-button: 150px;
 
-nav {
-  margin: 30px;
-  background-color: $color-primary;
-  
-    &::after {
+// MIXIN
+@mixin clearfix {
+  &::after {
     content: "";
     clear: both;
     display: table;
   }
+}
+
+@mixin style-link-text($col) {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $col;
+}
+
+// Creating a custom function
+@function divide ($a, $b) {
+  @return $a/$b;
+}
+
+nav {
+  margin: divide(60, 2) * 1px; //30px
+  background-color: $color-primary;
+  
+  @include clearfix;  
 }
 
 
@@ -310,9 +326,7 @@ nav {
     }
     
     a:link { //.navigation li a:link
-      text-decoration: none;
-      text-transform: uppercase;
-      color: $color-text-dark;
+      @include style-link-text($color-text-dark);
     }
   }
 }
@@ -324,19 +338,22 @@ nav {
   float: right;
 }
 
-.btn-main:link, .btn-hot:link {
+// Extents
+// Use only if they are inherently and thematically pretty related elements, i.e. "buttons"
+%btn-placeholder {
   padding: 10px;
   display: inline-block;
   text-align: center;
   border-radius: 100px;
-  text-decoration: none;
-  text-transform: uppercase;
   width: $width-button;
-  color: $color-text-light;
+  
+  @include style-link-text($color-text-light);
 }
+
 
 .btn-main {
   &:link {
+    @extend %btn-placeholder;
     background-color: $color-secondary;
   }
   
@@ -347,6 +364,7 @@ nav {
 
 .btn-hot {
   &:link {
+    @extend %btn-placeholder;
     background-color: $color-tertiary;
   }
   
