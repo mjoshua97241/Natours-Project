@@ -1,0 +1,387 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+// VARIABLES
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-grey-dark: #777;
+$color-white: #fff;
+$color-black: #000;
+
+/* BASIC RESET / NORMALIZE */
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* (font size ➗ browser default size) ✖ 100 */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: $color-grey-dark;
+  padding: 3rem;
+
+  box-sizing: border-box;
+}
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
+
+.header-primary {
+  color: $color-white;
+  text-transform: uppercase;
+
+  backface-visibility: hidden;
+  margin-bottom: 6rem;
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+
+    animation: moveInLeft 1s ease-out;
+
+    /*
+    animation-delay: 3s;
+    animation-iteration-count: 3;
+  
+    */
+  }
+
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+
+    animation: moveInRight 1s ease-out;
+  }
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translate(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  80% {
+    transform: translate(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.btn {
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    position: relative;
+    font-size: 1.6rem;
+  }
+
+  &:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.1);
+  }
+
+  &::after {
+    content: ""; /*This is a must even it is empty*/
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+
+    /* Disappear button first */
+    animation-fill-mode: backwards;
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+    padding: 1.5rem 4rem;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+}
+
+/* 
+
+////////////////////* LEARNING SPECIFICITY 
+.button {
+  font-size: 20px;
+  color: white;
+  background-color: blue;
+}
+
+a {
+  background-color:purple;
+}
+
+#nav div.pull-right a.button {
+  backgroung-color: orangered;
+}
+
+#nav div.pull-right a.button {
+  background-color: green;
+}
+
+#nav a.button:hover {
+  background-color: yellow;
+}
+
+///////////////////////////* HOW CSS WORKS
+
+////////////CASCADE AND SPECIFICTY/////////////////////
+- CSS declarations marked with !important have the highest priority
+- But, only use !important as a last resource. It's better to use correct specificities - more maintainable code!
+- Inline styles will always have priority over styles in external stylesheets;
+- A selector that contains 1 ID is more specific than one with 1000 classes;
+- A selector that contains 1 class is more specific than one with 1000 elements;
+- The universal selector * has no specificity value (0,0,0,0);
+- Rely more on specificity than on the order selectors;
+- But, rely on order when using 3rd-party stylesheets - always put your author stylesheet last.
+
+/////////////CSS VALUE PROCESSING: WHAT YOU NEED TO KNOW/////////////////
+- Each property has an initial value, used if nothing is declared (and if there is no inheritance - see next lecture);
+- Browsers specify a **root font-size** for each page (usually 16 px);
+- Percentages and relative values are always converted to pixels;
+- Percentages are measured relative to their perent's **font-size**, if used to specify font-size;
+- Percentages are measure relative to their parent's **width**, if used to specify lengths;
+- em are measured relative to their **parent** font-size, if used to specify font-size;
+- em are measured relative to the **current** font-size, if used to specify lengths;
+- rem are always measured relatvie to the **document's root** font-size;
+- vh and vw are simply percentage measurements of the viewport's height and width.
+
+//////////////INHERITANCE//////////////////////
+- Inheritance passes the values for some specific properties from parents to children - more maintainable code;
+- Properties related to text are inherited: font-family, font-size, color, etc
+- The computed value of a property is what gets inherited, **not** the declared value.
+- The inherit keyword forces inheritance on a certain property;
+- The initial keyword resets a property to its initial value.
+
+
+WHAT IS SASS?
+It is a CSS preprocessor, an extension of CSS that adds power and elegance to the basic language.
+
+Features:
+- Variables: for reusable values (colors, font sizes, spacing, etc)
+- Nesting
+- Operators
+- Partials and imports
+- Mixins
+- Functions
+- Extends
+- Control Directives
+
+////SCSS
+//*{
+  margin:0;
+  padding:0;
+}
+
+//variable "$"
+$color-primary: #f9ed69; //yellow color
+$color-secondary: #f08a5d; //orange
+$color-tertiary: #b83b5e; //pink
+$color-text-dark: #333;
+$color-text-light: #eee;
+
+$width-button: 150px;
+
+// MIXIN
+@mixin clearfix {
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+@mixin style-link-text($col) {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $col;
+}
+
+// Creating a custom function
+@function divide ($a, $b) {
+  @return $a/$b;
+}
+
+nav {
+  margin: divide(60, 2) * 1px; //30px
+  background-color: $color-primary;
+  
+  @include clearfix;  
+}
+
+
+
+.navigation {
+  list-style: none;
+  float: left;
+  
+
+  li {
+    display: inline-block;
+    margin-left: 30px;
+    
+//     unlimited nesting
+    &:first-child { // .navigation li:first-child //result with ampersand "&"
+      margin: 0;
+    }
+    
+    a:link { //.navigation li a:link
+      @include style-link-text($color-text-dark);
+    }
+  }
+}
+
+// .navigation li:first-child //result with ampersand "&"
+// .navigation li :first-child //result without ampersand "&"
+
+.buttons {
+  float: right;
+}
+
+// Extents
+// Use only if they are inherently and thematically pretty related elements, i.e. "buttons"
+%btn-placeholder {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+  width: $width-button;
+  
+  @include style-link-text($color-text-light);
+}
+
+
+.btn-main {
+  &:link {
+    @extend %btn-placeholder;
+    background-color: $color-secondary;
+  }
+  
+  &:hover {
+    background-color: darken($color-secondary, 15%);
+  }
+}
+
+.btn-hot {
+  &:link {
+    @extend %btn-placeholder;
+    background-color: $color-tertiary;
+  }
+  
+  &:hover {
+    background-color: lighten($color-tertiary, 10%);
+  }
+}
+
+*/

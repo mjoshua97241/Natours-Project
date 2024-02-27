@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 COLORS:
 
@@ -6,9 +7,7 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
-
 /* BASIC RESET / NORMALIZE */
-
 *,
 *::after,
 *::before {
@@ -29,22 +28,15 @@ body {
   line-height: 1.7;
   color: #777;
   padding: 3rem;
-
   box-sizing: border-box;
 }
 
 .header {
   height: 95vh;
-  background-image: linear-gradient(
-      to right bottom,
-      rgba(126, 213, 111, 0.8),
-      rgba(40, 180, 133, 0.8)
-    ),
-    url(../img/hero.jpg);
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
   background-size: cover;
   background-position: top;
   position: relative;
-
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
 
@@ -69,7 +61,6 @@ body {
 .header-primary {
   color: #fff;
   text-transform: uppercase;
-
   backface-visibility: hidden;
   margin-bottom: 6rem;
 }
@@ -79,9 +70,7 @@ body {
   font-size: 6rem;
   font-weight: 400;
   letter-spacing: 3.5rem;
-
   animation: moveInLeft 1s ease-out;
-
   /*
   animation-delay: 3s;
   animation-iteration-count: 3;
@@ -94,7 +83,6 @@ body {
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 1.75rem;
-
   animation: moveInRight 1s ease-out;
 }
 
@@ -103,45 +91,37 @@ body {
     opacity: 0;
     transform: translateX(-10rem);
   }
-
   80% {
     transform: translate(1rem);
   }
-
   100% {
     opacity: 1;
     transform: translate(0);
   }
 }
-
 @keyframes moveInRight {
   0% {
     opacity: 0;
     transform: translateX(10rem);
   }
-
   80% {
     transform: translate(-1rem);
   }
-
   100% {
     opacity: 1;
     transform: translate(0);
   }
 }
-
 @keyframes moveInBottom {
   0% {
     opacity: 0;
     transform: translateY(3rem);
   }
-
   100% {
     opacity: 1;
     transform: translate(0);
   }
 }
-
 .btn:link,
 .btn:visited {
   text-transform: uppercase;
@@ -193,7 +173,6 @@ body {
 
 .btn--animated {
   animation: moveInBottom 0.5s ease-out 0.75s;
-
   /* Disappear button first */
   animation-fill-mode: backwards;
 }
@@ -305,7 +284,7 @@ $width-button: 150px;
 nav {
   margin: divide(60, 2) * 1px; //30px
   background-color: $color-primary;
-  
+
   @include clearfix;  
 }
 
@@ -314,17 +293,17 @@ nav {
 .navigation {
   list-style: none;
   float: left;
-  
+
 
   li {
     display: inline-block;
     margin-left: 30px;
-    
+
 //     unlimited nesting
     &:first-child { // .navigation li:first-child //result with ampersand "&"
       margin: 0;
     }
-    
+
     a:link { //.navigation li a:link
       @include style-link-text($color-text-dark);
     }
@@ -346,7 +325,7 @@ nav {
   text-align: center;
   border-radius: 100px;
   width: $width-button;
-  
+
   @include style-link-text($color-text-light);
 }
 
@@ -356,7 +335,7 @@ nav {
     @extend %btn-placeholder;
     background-color: $color-secondary;
   }
-  
+
   &:hover {
     background-color: darken($color-secondary, 15%);
   }
@@ -367,10 +346,12 @@ nav {
     @extend %btn-placeholder;
     background-color: $color-tertiary;
   }
-  
+
   &:hover {
     background-color: lighten($color-tertiary, 10%);
   }
 }
 
 */
+
+/*# sourceMappingURL=style.css.map */
